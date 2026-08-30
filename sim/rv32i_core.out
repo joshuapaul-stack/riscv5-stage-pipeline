@@ -1,0 +1,45 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2009.vpi";
+S_0x58cbee06a570 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x58cbee06a700 .scope module, "rv32i_core" "rv32i_core" 3 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /OUTPUT 32 "pc";
+o0x764c52058018 .functor BUFZ 1, C4<z>; HiZ drive
+v0x58cbee07bd50_0 .net "clk", 0 0, o0x764c52058018;  0 drivers
+v0x58cbee07c430_0 .var "pc", 31 0;
+o0x764c52058078 .functor BUFZ 1, C4<z>; HiZ drive
+v0x58cbee0b1e60_0 .net "rst", 0 0, o0x764c52058078;  0 drivers
+E_0x58cbee06a910 .event posedge, v0x58cbee07bd50_0;
+    .scope S_0x58cbee06a700;
+T_0 ;
+    %wait E_0x58cbee06a910;
+    %load/vec4 v0x58cbee0b1e60_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x58cbee07c430_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x58cbee07c430_0;
+    %addi 4, 0, 32;
+    %assign/vec4 v0x58cbee07c430_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "rtl/rv32i_core.sv";
