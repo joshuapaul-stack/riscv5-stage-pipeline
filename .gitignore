@@ -3,3 +3,6 @@ sim/*.vcd
 *.log
 *.vvp
 .DS_Store
+build/
+librelane/
+sim.out
